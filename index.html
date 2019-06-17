@@ -12,9 +12,10 @@
 </head>
 
 <body>
+<div class="background">
     <div class="container">
         <div class="header text-center clearfix">
-            <h1 class="text-muted">Seinfeld Trivia Game</h1>
+            <h1 class="title">Seinfeld Trivia Game</h1>
         </div>
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
@@ -24,13 +25,17 @@
                     <p id="remaining-time" class="lead">Remaining Time: <span id="timer"></span></p>
                     <p id="question" class="lead"></p>
                 </div>
-                <div id="results">
-                </div>
+                <div id="quiz"></div>
+                
+                <div id="results"></div>
             </div>
 
             <div class="form-row text-center">
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Start</button>
+                        <!-- <button type="submit" class="btn btn-primary" id="start">Start</button>
+                        <br> -->
+                        <br>
+                        <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>                    
                     </div>
             </div>
                 
@@ -40,6 +45,7 @@
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/javascript/app.js"></script>
+</div>
 </body>
 
 </html>
