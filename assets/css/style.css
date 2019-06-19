@@ -1,28 +1,47 @@
 body {
     text-align: center;
+    font-family: 'Meera Inimai', sans-serif;
 }
 
-.background {
+h1 {
+  padding-top: 10px;
+}
+
+/* .background {
     background-image: url("../images/cast.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
+    background-attachment: scroll;
+} */
+
+.background {
+  background: url("../images/cast.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .jumbotron {
     position: relative;
     margin-top: 20%;
     animation-duration: 3s;
     animation-name: slidein;
+    margin-bottom: 0px;
 }
 
 
 .btn-lg {
     display: flex;
     justify-content: center;
-} */
+} 
 
 .btn-lg:hover {
     color: goldenrod;
+}
+
+#results{
+    font-weight: bolder;
 }
 
 .title {
