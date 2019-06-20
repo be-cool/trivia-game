@@ -3,56 +3,70 @@ $(document).on('click', '#start', function () {
 
 });
 
-// creating a timer to be put in the remaining time id on the html page
+
 // function startTimer(duration, display) {
 //     var timer = duration, minutes, seconds;
-//     setInterval(function(){
-//         minutes = parseInt(timer / 60,10);
+//     setInterval(function () {
+//         minutes = parseInt(timer / 60, 10);
 //         seconds = parseInt(timer % 60, 10);
 
-//         minutes = minutes < 10 ? "0" + minutes : minutes;
-//         seconds = seconds < 10 ? "0" + seconds : seconds;
-
+//         // if less than ten seconds left, add a zero in front of the seconds. otherwise just show the double digit number
+//         if (seconds < 10) {
+//             display.textContent = minutes + ":0" + seconds;
+//         }
+//         else{
 //         display.textContent = minutes + ":" + seconds;
+//         }
 
+//         // when the timer gets to 0, and the user has not yet hit the submit button, show the results of the trivia.
 //         if (--timer < 0) {
-//             timer = duration;
+//             showResults();
 //         }
 //     }, 1000);
-//     window.onload = function () {
-//         console.log("hi")
-//         var twoMinutes = 60*2,
-//         display = document.getElementById('#timer');
-//         startTimer(twoMinutes, display);
-//     };
+
+//     // trying to stop the timer at 0 and not let it drag into negatives
+//     clearInterval(timer);
 // }
 
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+// // when the window opens, the timer immediately starts running 
+// window.onload = function () {
+//     var twoMinutes = 60 * 0.2,
+//         display = document.querySelector('#timer');
+//     startTimer(twoMinutes, display);
+// };
 
-        // if less than ten seconds left, add a zero in front of the seconds
-        if (seconds < 10) {
-            $('#timer').prepend("0")
-        }
+// used code concept from activity 9 in week 5 instead of above code to make it simpler with the clear interval
+var number = 61
+var intervalId;
 
-        display.textContent = minutes + ":" + seconds;
+function run() {
+    clearInterval(intervalId);
+    intervalId = setInterval(decrement, 1000);
+    console.log("yo")
+  }
 
-        if (--timer < 0) {
-            showResults();
-        }
-    }, 1000);
+  function decrement() {
+
+    number--;
+
+    // show the number in the timer area
+    $("#timer").html(number);
 
 
-}
+    if (number === 0) {
+      stop();
+      showResults();
+    }
+  }
 
-window.onload = function () {
-    var twoMinutes = 60 * 0.2,
-        display = document.querySelector('#timer');
-    startTimer(twoMinutes, display);
-};
+  //  The stop function ends the timer at 0
+  function stop() {
+    clearInterval(intervalId);
+  }
+//   start the run function right when the page is loaded
+  window.onload = run;
+
+
 
 var answerContainers = [];
 var quizContainer = [];
@@ -83,8 +97,10 @@ function theQuiz() {
 };
 
 function showResults() {
+    // put all of the selected answers into a answer container array to match up against correct answers
     var answerContainers = quizContainer.querySelectorAll('.answers');
     var numCorrect = 0;
+
     myQuestions.forEach((currentQuestion, questionNumber) => {
         var answerContainer = answerContainers[questionNumber];
         var selector = 'input[name=question' + questionNumber + ']:checked';
